@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch } from "react-redux";
-import { setUserState } from "../actions";
-import { UserAuth } from "../context/authContext";
-import { db } from "../firebase-config";
+import { setUserState } from "../../actions";
+import { UserAuth } from "../../context/authContext";
+import { db } from "../../firebase-config";
 import { collection,getDocs, query, where, } from "firebase/firestore";
 
 
@@ -16,7 +16,8 @@ function Register() {
     const [ contact, setContact ] = useState('')
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { createUser, createUserToFirestore } = UserAuth(); 
+
+    const { createUser, createCustomerToFirestore } = UserAuth(); 
     const user = useSelector(state => state.user);
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -30,23 +31,23 @@ function Register() {
         }
         try {
           const newUser = await createUser(email, password);
-          await createUserToFirestore(fullname, email, address, contact, newUser);
-          let userType = 'Admin';
+          await createCustomerToFirestore(fullname, email, address, contact, newUser);
+          let userType = "Customer";
           dispatch(setUserState({newUser, userType}));
-            navigate('/admin/');
+            navigate('/');
         } catch (error) {
             alert(error.message);
         }
     }
 
     useEffect(() => {
-        if(user.isLogin && user.type === 'Admin'){
-                  navigate('/admin');
+        if(user.isLogin && user.type === 'Customer'){
+                    navigate('/');
         }
     }, []);
 
     return (
-        <div className='loginPanel'>
+        <div className='customerLoginPanel customer-register'>
           
           <h1>Register</h1>
           <form onSubmit={ onSubmit}>
@@ -71,7 +72,7 @@ function Register() {
             <input type="password" id='password' value={ password } onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <button>Register</button>
-            <Link to={'/admin/login'}> <button>Login</button> </Link>
+            <Link to={'/login'}> <button>Login</button> </Link>
           </form>
 
           

@@ -403,16 +403,14 @@
 
 .billSearchContainer {
     border-top: 1px solid black;
-    position: absolute;
-    bottom: 0;
     padding: 20px;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin: 0 20px;
+    align-items: center;  
     background: white;
     border-radius: 15px;
+    margin-bottom: 20px;
 }
 
 .billContainer input {
@@ -632,4 +630,27 @@
 .logOut:hover {
     background: #e78484 !important;
     cursor: pointer;
+}
+.billingSearch{
+    width: 90%;
+}
+
+.billModal{
+    border: solid blue 1px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 5px;
+}
+.setWidth{
+    width: 450px;
+    display: flex;
+    justify-content: end;
+    font-weight: bold;
+}
+.setGroupWidth{
+    display: flex;
+    justify-content: space-between;
+    width: 700px !important;
 }

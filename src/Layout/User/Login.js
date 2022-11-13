@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom'
-import '../Auth.css'
 import { useSelector, useDispatch } from "react-redux";
-import { setUserState } from "../actions";
-import { UserAuth } from "../context/authContext";
-import { db } from "../firebase-config";
+import { setUserState } from "../../actions";
+import { UserAuth } from "../../context/authContext";
+import { db } from "../../firebase-config";
 import { collection,getDocs, query, where, } from "firebase/firestore";
+
+// import { UserAuth } from "../context/authContext";
 
 function Login() {
 
@@ -14,9 +15,8 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { loginUser } = UserAuth(); 
     const user = useSelector(state => state.user);
-
+    const { loginUser} = UserAuth(); 
     const onSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,15 +26,15 @@ function Login() {
         }
         try {
             const newUser = await loginUser(email, password);
-            const q = query(collection(db, "users"), where("id", "==", newUser.user.uid));
+            const q = query(collection(db, "customers"), where("id", "==", newUser.user.uid));
             const querySnapshot = getDocs(q);
             querySnapshot.then((snapshot) => {
                 let count = 0;
-                let userType = "Admin";
+                let userType = "Customer";
                 snapshot.forEach((doc) => {
                     if (doc.data().id === newUser.user.uid) {
                         dispatch(setUserState({newUser, userType}));
-                        navigate('/admin');
+                        navigate('/');
                         count++;
                     }
                 });
@@ -49,13 +49,13 @@ function Login() {
     }
 
     useEffect(() => {
-        if(user.isLogin && user.type === "Admin"){
-                  navigate('/admin');
-        }
+        if(user.isLogin && user.type === "Customer"){
+                    navigate('/');
+        } 
     }, []);
 
     return (
-        <div className='loginPanel'>
+        <div className='customerLoginPanel'>
           <h1>Login</h1>
           <form>
             <div className="formItem">
@@ -67,7 +67,7 @@ function Login() {
             <input type="password" id='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <button onClick={ onSubmit} type="submit">Login</button>
-            <Link to={'/admin/register'}> <button>Register</button> </Link>
+            <Link to={'/register'}> <button>Register</button> </Link>
           </form>
 
         </div>

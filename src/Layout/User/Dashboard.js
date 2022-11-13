@@ -1,11 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import map from '../../talairon-map.png'
 import t1 from '../../talairon1.png'
 import t2 from '../../talairon2.jpg'
 import t3 from '../../talairon3.jpg'
 import t4 from '../../talairon4.jpg'
+import { useNavigate } from 'react-router'
+import { db } from "../../firebase-config";
+import { collection,getDocs, query, where, } from "firebase/firestore";
+
+
+import { useSelector } from 'react-redux'
 
 function Dashboard() {
+    const navigate = useNavigate();
+    const user = useSelector(state => state.user);
+
+    useEffect(() => {
+
+    }, []);
+
+
 
     const [consumers, setConsumers] = useState(0);
 

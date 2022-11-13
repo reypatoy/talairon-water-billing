@@ -10,3 +10,10 @@ export const logOut = () => {
         type: 'LOGOUT',
     }
 }
+
+export const setCustomerState = (customer) => {
+    return {
+        type: 'SET_CUSTOMER',
+        payload: customer
+    }
+}               

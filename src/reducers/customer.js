@@ -1,31 +1,29 @@
-export const userState = {
+export const customerState = {
     isLogin: false,
     user: null,
     error: null,
-    type: null,
     loading: false,
     };
 
 
 
-const userReducer = (state = userState, action) => {
+const customerReducer = (state = customerState, action) => {
     switch (action.type) {
-        case 'SET_USER':
+        case 'SET_CUSTOMER':
+            console.log(action.payload);
             state = {
                 ...state,
                 isLogin: true,
-                type: action.payload.userType,
-                user: action.payload.newUser,
+                customer: action.payload.newcustomer,
             };
             return state;
 
-        case 'LOGOUT':
+        case 'LOGOUT_CUSTOMER':
             state = {
                 ...state,
                 isLogin: false,
-                user: null,
+                customer: null,
                 error: null,
-                type:  null,
                 loading: false,
             };
             return state;
@@ -34,4 +32,4 @@ const userReducer = (state = userState, action) => {
     }
 };
 
-export default userReducer;
+export default customerReducer;

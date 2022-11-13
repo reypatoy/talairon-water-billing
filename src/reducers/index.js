@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import userReducer from "./user";
-import userProfileReducer from "./userProfile";
+import customerReducer from "./customer";
 
 
 const allReducers = combineReducers({
     user: userReducer,
-    userProfileReducer: userProfileReducer
+    customerReducer: customerReducer
 });
 
 

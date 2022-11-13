@@ -20,7 +20,6 @@ function Admins() {
             setHour(d.getHours())
             setMinute(d.getMinutes())
         }, 1000)
-        console.log(date);
     },[minute])
 
     return (
@@ -37,21 +36,21 @@ function Admins() {
                 <div className="dashboardLeft">
                     <div className="dashboardStatCell">
                         <div className="statCellHead statPaid">
-                            <img src={statCell} alt="" srcset="" />
+                            <img src={statCell} alt="" srcSet="" />
                             <h3>Customers Paid Today</h3>
                         </div>
                         <span>{ paid }</span>
                     </div>
                     <div className="dashboardStatCell">
                         <div className="statCellHead">
-                            <img src={statCell} alt="" srcset="" />
+                            <img src={statCell} alt="" srcSet="" />
                             <h3>Customers with Penalties</h3>
                         </div>
                         <span>{ penalties }</span>
                     </div>
                     <div className="dashboardStatCell">
                         <div className="statCellHead">
-                            <img src={statCell} alt="" srcset="" />
+                            <img src={statCell} alt="" srcSet="" />
                             <h3>Customers with Overdue Balance</h3>
                         </div>
                         <span>{ overdue }</span>

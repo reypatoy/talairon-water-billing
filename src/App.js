@@ -15,9 +15,9 @@ function App() {
       <div className="main">
         <AuthContextProvider>
           <Routes>
-            <Route exact path='/' element={<Login/>}/>
-            <Route exact path='/register' element={<Register/>}/>
-            <Route exact path='/user/*' element={<User />}/>
+            <Route exact path='/admin/login' element={<Login/>}/>
+            <Route exact path='/admin/register' element={<Register/>}/>
+              <Route exact path='/*' element={<User />}/>
             <Route path='/admin/*' element={<Admin/>}/>
           </Routes>
         </AuthContextProvider>

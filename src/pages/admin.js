@@ -13,6 +13,8 @@ import brgyLogo from '../brgyLogo.png'
 import { logOut } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import { UserAuth } from "../context/authContext";
+import { db } from "../firebase-config";
+import { collection,getDocs, query, where, } from "firebase/firestore";
 
 function Admin() {
     const dispatch = useDispatch();
@@ -24,11 +26,14 @@ function Admin() {
     const onLogOut = () => {
         logoutUser();
         dispatch(logOut());
-        navigate('/');
+        navigate('/admin/login');
     };
     useEffect( () => {
         if(!user.isLogin){
-            navigate('/');
+            navigate('/admin/login');
+        }
+        else if(user.type !== "Admin") {
+                    navigate('/admin/login');
         }
       }, 
     []);

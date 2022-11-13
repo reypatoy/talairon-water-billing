@@ -58,7 +58,7 @@ function Profile() {
 
     }
     useEffect(() => {
-        if (user.isLogin) {
+        if (user.isLogin && user.type === 'Admin') {
             const q = query(collection(db, "users"), where("id", "==", user.user.user.uid));
             const querySnapshot = getDocs(q);
             querySnapshot.then((snapshot) => {
