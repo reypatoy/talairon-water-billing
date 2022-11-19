@@ -46,6 +46,7 @@ function Notifications() {
                     to: '+639078721057',
                     text: `Notice: Water Interuption from ${selectedDate} until ${selectedDateTo}`,
                 });
+                console.log(response);
             alert('Notive Send Successfully!!!')
         }
     }
