@@ -51,14 +51,14 @@ function Approval() {
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>Email</th>
-                            <th>Address</th>
+                            <th>Purok</th>
                             <th>confirm?</th>
                         </tr>
                     </thead>
                     <tbody>
                     {data && data.map((item, i) => (
                         <tr key={i} >
-                            <td>{item.data().id}</td>
+                            <td>{item.data().id.substring(1, 6)}</td>
                             <td>{item.data().fullname}</td>
                             <td>{item.data().contact}</td>
                             <td>{item.data().email}</td>

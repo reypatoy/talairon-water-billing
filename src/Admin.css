@@ -28,22 +28,30 @@
 
 .adminContainer thead th{
     background: #419BEE;
-    padding: 15px 20px;
+    padding: 15px 20px !important;
 }
 
 .adminContainer tbody td {
     text-align: center;
-    padding: 15px 20px;
-    height: 12px;
+    padding: 0px !important;
+    height: 12px !important;
 }
 
 .adminContainer tbody tr {
-    height: 12px;
+    height: 12px !important;
 }
 
 .adminDashboard {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+}
+.admin-Dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 95%;
 }
 
 .dashboardLeft {
@@ -52,6 +60,15 @@
     padding: 20px;
     background: white;
     border-radius: 15px;
+}
+.dashboardRight {
+    padding: 0px !important;
+    background: white;
+    border-radius: 15px;
+}
+.dashboardRight table {
+    width: 100%;
+    margin: auto;
 }
 
 .dashboardStatCell {
@@ -121,9 +138,6 @@
     border-spacing: 0;
 }
 
-.dashboardRight table * {
-    padding: 5px;
-}
 
 .dashboardRight table th {
     background: var(--primary-blue);
@@ -151,16 +165,36 @@
     border-radius: 15px;
     background: linear-gradient(#f74545 40%, rgb(0,0,0,0));
     padding: 20px;
-    align-items: center;
-    justify-content: center;
 }
 
 .notifContainer h1 {
     font-size: 2.5rem;
     color: #ffffff;
     text-shadow: 0px 2px 4px black;
+    text-align: center;
 }
-
+.notif{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.notif label{
+    padding: 10px;
+}
+.notif .notifInput{
+    padding: 5px;
+    border-radius: 10px;
+}
+.notif-date{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+.notif-date label{
+    width: 300px;
+}
 .statButtons {
     display: flex;
     position: absolute;
@@ -177,7 +211,12 @@
     cursor: pointer;
     color: var(--primary-blue);
 }
-
+.notif-label{
+    padding: 10px;
+}
+.notif-label label{
+    margin-right: 5px;
+}
 .profileContainer {
     display: flex;
     flex-direction: column;
@@ -347,6 +386,15 @@
 
 .billContainer table {
     background: white;
+}
+.mark-done-appointment{
+    border: none;
+    padding: 2px 2px;
+    cursor: pointer;
+    background-color: transparent;
+}
+.mark-done-appointment:hover{
+    text-decoration: underline;
 }
 
 .billContainer thead th {
@@ -569,6 +617,7 @@
 
 .manageCardHead {
     text-align: center;
+    border-bottom: solid 2px #419BEE;
     padding: 4px;
 }
 
@@ -579,6 +628,7 @@
 }
 
 .manageCardBody {
+    overflow-y: auto;
     padding: 4px;
 }
 
@@ -592,10 +642,7 @@
 }
 
 .manageCardFoot {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    border-top: solid 2px #419BEE;
 }
 
 .manageCardFoot button {
@@ -621,6 +668,13 @@
 
 .delete:hover {
     background: #e78484 !important;
+}
+.close {
+    color: gray !important;
+}
+
+.close:hover {
+    background: #656363 !important;
 }
 .logOut {
     color: red !important;
@@ -651,6 +705,38 @@
 }
 .setGroupWidth{
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     width: 700px !important;
+}
+.addBillButton1{
+    margin-right: 20px;
+}
+.view_more{
+    background: #419BEE;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+.view_more:hover{
+    background: #1e82e0;
+}
+.billFormContainer{
+    display: flex;
+    padding: 0px;
+    flex-direction: column;
+    align-items: center;
+}
+.tableBody{
+    text-align: right;
+}
+.appointment-button{
+    background: #419BEE;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+.appointment-button:hover{
+    background: #1e82e0;
 }

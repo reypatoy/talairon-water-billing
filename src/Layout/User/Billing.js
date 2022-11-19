@@ -59,8 +59,8 @@ function Billing() {
                 </div>
                 <span className="billDate"> { date != null ? date : "loading"} </span>
                 <div className="billCell">
-                    <h2>Bill: </h2>
-                    <span>{ bill }</span>
+                    <h2>Current Bill: </h2>
+                    <span>{ parseInt(bill).toLocaleString() }</span>
                 </div>
                 <div className="billCell">
                     <h2>Meter Reading: </h2>
@@ -71,8 +71,8 @@ function Billing() {
                     <span>{ dueDate }</span>
                 </div>
 
-                <Link to='/user/appointment'>
-                    <button>Set Appointment</button>
+                <Link to='/appointment'>
+                    <button>Appointments / Past Records</button>
                 </Link>
             </div>
         </>

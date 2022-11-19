@@ -8,7 +8,7 @@ import {
     EmailAuthProvider,
 } from "firebase/auth";
 import { auth, db } from "../firebase-config";
-import { addDoc, collection, serverTimestamp, getFirestore, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, getFirestore, doc, setDoc, deleteDoc } from "firebase/firestore";
 
 const UserContext = createContext();
 
@@ -93,12 +93,65 @@ export const AuthContextProvider = ({children}) => {
                 };
             setDoc(docRef, data, { merge:true })
     }
+
+    const createCustomerBill = (customerId, date, bill, reading, totalPayable, penalty) => {
+        const billCollectionRef = collection(db, 'bills');
+        return addDoc(billCollectionRef, {
+          customerId: customerId,
+          date: date,
+          bill: bill,
+          reading: reading,
+          totalPayable: totalPayable,
+        penalty: penalty,
+          createdAt: serverTimestamp(),
+      });
+   } 
+
+    const createCustomerAppointment = (customerId, date, fullname, description, address, number) => {
+        const billCollectionRef = collection(db, 'appointments');
+        return addDoc(billCollectionRef, {
+          customerId: customerId,
+          date: date,
+          fullname: fullname,
+          description:description,
+          address: address, 
+          status: "Pending",
+          contact : number,
+          createdAt: serverTimestamp(),
+      });
+   } 
+    const setDoneCustomerAppointment = (appointmentId) => {
+        const docRef = doc(db, "appointments", appointmentId);
+            const data = {
+                status: "Done",
+                };
+            setDoc(docRef, data, { merge:true })
+   } 
+
+    const deleteCustomerAppointment = (appointmentId) => {
+        return deleteDoc(doc(db, "appointments", appointmentId));
+   } 
+
+   const createCustomerNotification = (notice, dateFrom, dateTo) => {
+    const notificationCollectionRef = collection(db, 'notifications');
+    return addDoc(notificationCollectionRef, {
+      notice: notice,
+      dateFrom:dateFrom,
+      dateTo:dateTo,
+      isSend : true,
+      createdAt: serverTimestamp(),
+  });
+} 
+
     return (
         <UserContext.Provider value={{
                                         createUser, createUserToFirestore, 
                                         loginUser, logoutUser, updateProfile,
                                         createCustomerToFirestore, updateCustomerProfile,
-                                        approveCustomer, saveCustomerBill}}>
+                                        approveCustomer, saveCustomerBill,createCustomerBill,
+                                        createCustomerAppointment, deleteCustomerAppointment,
+                                        setDoneCustomerAppointment, createCustomerNotification
+                                        }}>
             {children}
         </UserContext.Provider>
     )

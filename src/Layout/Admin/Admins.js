@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import statCell from '../../statCell.png'
+import moment from 'moment';
+import { db } from "../../firebase-config";
+import { collection,getDocs, query, where, onSnapshot } from "firebase/firestore";
+import { UserAuth } from "../../context/authContext";
+import { useSelector } from "react-redux";
 
 function Admins() {
 
@@ -11,17 +16,49 @@ function Admins() {
     const [date, setDate] = useState(0);
     const [hour, setHour] = useState(0);
     const [minute, setMinute] = useState(0);
+    const [allAppointments, setAllAppointments] = useState([]);
+    const [personalAppointments, setPersonalAppointments] = useState([]);
+    const user = useSelector(state => state.user);
+    const { setDoneCustomerAppointment } = UserAuth();
+
+
 
     
-    useEffect(() => {
+    setInterval(() =>{
         const d = new Date();
-        const interval = setInterval(() =>{
-            setDate(d.toDateString())
-            setHour(d.getHours())
-            setMinute(d.getMinutes())
-        }, 1000)
-    },[minute])
+        setDate(d.toDateString())
+        setHour(d.getHours())
+        setMinute(d.getMinutes())
+    }, 60000)
 
+
+    useEffect(() => {
+    },[])
+
+    const q = collection(db, "appointments");
+    onSnapshot(q, (query) => {
+        const allData = [];
+        query.forEach((doc) => {
+            if(new Date(doc.data().date).getTime() >= new Date().getTime()){
+                allData.push(doc);
+            }
+        });
+        setAllAppointments(allData);
+        setPersonalAppointments(allData.sort(function(a, b){
+            let dateA = a.data().date.toLowerCase();
+            let dateB = b.data().date.toLowerCase();
+                if (dateA < dateB) 
+                {
+                    return -1;
+                }else if (dateA > dateB){
+                    return 1;
+                }   
+            return 0;
+          }));
+    });
+    const setDone = async (id) => {
+        await setDoneCustomerAppointment(id);
+    }
     return (
         <div className="adminContainer">
             
@@ -32,7 +69,7 @@ function Admins() {
             <span>{ date }</span>
             <span>{ hour } : { minute }</span>
             
-            <div className="adminDashboard">
+            <div className="admin-Dashboard">
                 <div className="dashboardLeft">
                     <div className="dashboardStatCell">
                         <div className="statCellHead statPaid">
@@ -56,26 +93,40 @@ function Admins() {
                         <span>{ overdue }</span>
                     </div>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Number</th>
-                            <th>Purok</th>
-                            <th>Appointment Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>0002</td>
-                            <td>Marinelle Penote</td>
-                            <td>0912345678</td>
-                            <td>5</td>
-                            <td>15:00 October 15, 2022</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="dashboardRight">
+                    <table>
+                        <thead>
+                        {personalAppointments && personalAppointments.length? 
+                            <tr>
+                                <th>Name</th>
+                                <th>Number</th>
+                                <th>Purok</th>
+                                <th>Appointment Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>:
+                            <tr>
+                                <th>No Upcoming Appointments</th>
+                            </tr>
+                        }
+                        </thead>
+                        <tbody>
+                            {personalAppointments && personalAppointments.map((item, i) => (
+                                
+                                <tr key={i}>
+                                    <td>{item.data().fullname}</td>
+                                    <td>{item.data().contact}</td>
+                                    <td>{item.data().address}</td>
+                                    <td>{item.data().date}</td>
+                                    <td>{item.data().status}</td>
+                                    <td>
+                                        <button onClick={() => setDone(item.id)} className="mark-done-appointment">Mark Done</button>    
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>

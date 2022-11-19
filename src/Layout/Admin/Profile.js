@@ -71,7 +71,7 @@ function Profile() {
                 });
             });
         }else{
-            navigate('/');
+            navigate('/admin/login/');
         }
     }, [])
 

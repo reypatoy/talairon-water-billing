@@ -56,7 +56,7 @@ function Register() {
             <input type="text" id='name' value={ fullname } onChange={(e) => setFullname(e.target.value)}/>
             </div>
             <div className="formItem">
-            <label>Address</label>
+            <label>Purok</label>
             <input type="text" id='address' value={ address } onChange={(e) => setAddress(e.target.value)}/>
             </div>
             <div className="formItem">
