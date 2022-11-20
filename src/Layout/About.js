@@ -15,7 +15,7 @@ function About() {
                 <div className="contactItem">
                     <img src={ phone } alt="" />
                 </div>
-                <a href='https://www.facebook.com/sktalairon?_rdc=1&_rdr'>
+                <a target="_blank" href='https://www.facebook.com/sktalairon?_rdc=1&_rdr' rel="noreferrer">
                     <div className="contactItem">
                         <img src={ fb } alt="" />
                     </div>
