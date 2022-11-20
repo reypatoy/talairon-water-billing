@@ -46,7 +46,7 @@ function Notifications() {
             };
             await createCustomerNotification(notifications, moment(selectedDate).format("MM-DD-YYYY"),
                  moment(selectedDateTo).format("MM-DD-YYYY"))
-                 const response = await axios.post('https://water-bill-api.herokuapp.com/api/',{
+                 const response = await axios.post('https://new-sms-api.herokuapp.com/https://water-bill-api.herokuapp.com/api/',{
                     "to": '+639078721057',
                     "text": `Notice: Water Interuption from ${selectedDate} until ${selectedDateTo}`,
                     });

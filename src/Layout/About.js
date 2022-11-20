@@ -14,12 +14,10 @@ function About() {
             <div className="aboutFooter">
                 <div className="contactItem">
                     <img src={ phone } alt="" />
-                    <span>test</span>
                 </div>
-                <a href='https://www.facebook.com'>
+                <a href='https://www.facebook.com/sktalairon?_rdc=1&_rdr'>
                     <div className="contactItem">
                         <img src={ fb } alt="" />
-                        <span>test</span>
                     </div>
                 </a>
             </div>
