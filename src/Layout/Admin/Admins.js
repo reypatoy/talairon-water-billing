@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import statCell from '../../statCell.png'
-import moment from 'moment';
 import { db } from "../../firebase-config";
-import { collection,getDocs, query, where, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { UserAuth } from "../../context/authContext";
 import { useSelector } from "react-redux";
 

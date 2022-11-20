@@ -3,9 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch } from "react-redux";
 import { setUserState } from "../actions";
 import { UserAuth } from "../context/authContext";
-import { db } from "../firebase-config";
-import { collection,getDocs, query, where, } from "firebase/firestore";
-
 
 function Register() {
 

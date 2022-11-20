@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import DatePicker from 'react-datepicker';
@@ -13,19 +12,9 @@ import { UserAuth } from "../../context/authContext";
 function Appointment() {
 
     const [date, setDate] = useState(null);
-    const [time, setTime] = useState(null)
-    const [pastRead, setPastRead] = useState('2553678');
-    const [currRead, setCurrRead] = useState('2576815');
     const [bills, setBills] = useState([]);
     const navigate = useNavigate();
 
-    const [viewDate, setViewDate] = useState(null);
-    const [viewTime, setViewTime] = useState(null);
-    let btnRef = useRef();
-
-
-    const [data, setData] = useState([]);
-    const [filterData, setFilterData] = useState([]);
     const [allAppointments, setAllAppointments] = useState([]);
     const [personalAppointments, setPersonalAppointments] = useState([]);
     const [filterBills, setFilterBills] = useState([]);

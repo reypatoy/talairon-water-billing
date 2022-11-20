@@ -1,7 +1,7 @@
 import { db } from "../../firebase-config";
-import { collection,getDocs, query, where, onSnapshot } from "firebase/firestore";
+import { collection,query, where, onSnapshot } from "firebase/firestore";
 import { UserAuth } from "../../context/authContext";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect} from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DatePicker from 'react-datepicker';

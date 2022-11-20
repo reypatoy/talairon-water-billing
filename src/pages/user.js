@@ -2,13 +2,10 @@ import { Link, Route, Routes } from "react-router-dom";
 import Dashboard from "../Layout/User/Dashboard";
 import Billing from "../Layout/User/Billing";
 import Profile from "../Layout/User/Profile"
-import Logo from '../images/navLogo.png'
 import Appointment from "../Layout/User/Appointment";
 import About from "../Layout/About";
 import '../user.css'
 import brgyLogo from '../brgyLogo.png';
-import { loginLogo } from "../images/loginLogo.png";
-
 import Login from "../Layout/User/Login";
 import Register from "../Layout/User/Register";
 

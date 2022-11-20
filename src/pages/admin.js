@@ -13,9 +13,6 @@ import brgyLogo from '../brgyLogo.png'
 import { logOut } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import { UserAuth } from "../context/authContext";
-import { db } from "../firebase-config";
-import { collection,getDocs, query, where, } from "firebase/firestore";
-
 function Admin() {
     const dispatch = useDispatch();
     const navigate = useNavigate();

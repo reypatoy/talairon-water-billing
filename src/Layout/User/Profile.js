@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase-config";
 import { collection,getDocs, query, where, } from "firebase/firestore";
-import { UserAuth } from "../../context/authContext";
 function Profile() {
 
     const [email, setEmail] = useState('');
@@ -11,7 +10,6 @@ function Profile() {
 
     const [fullName, setFullName] = useState('');
     const [accountNumber, setAccountNumber] = useState('')
-    const [age, setAge] = useState('');
     const [address, setAddress] = useState('')
     const [profileId, setProfileId] = useState('');
     const user = useSelector(state => state.user);

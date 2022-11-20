@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
 import { db } from "../../firebase-config";
-import { collection,getDocs, query, where, } from "firebase/firestore";
+import { collection,getDocs, query } from "firebase/firestore";
 import axios from "axios";
 // const nexmo = require('nexmo')
 
@@ -40,12 +40,16 @@ function Notifications() {
     }, []);
     const sendNotification = async () => {
         if(!isSend){
+            let body = {
+                "to": '+639078721057',
+                "text": `Notice: Water Interuption from ${selectedDate} until ${selectedDateTo}`,
+            };
             await createCustomerNotification(notifications, moment(selectedDate).format("MM-DD-YYYY"),
                  moment(selectedDateTo).format("MM-DD-YYYY"))
-                 const response = await axios.post('https://genderanddevelopment.herokuapp.com/api/', {
-                    to: '+639078721057',
-                    text: `Notice: Water Interuption from ${selectedDate} until ${selectedDateTo}`,
-                });
+                 const response = await axios.post('https://water-bill-api.herokuapp.com/api/',{
+                    "to": '+639078721057',
+                    "text": `Notice: Water Interuption from ${selectedDate} until ${selectedDateTo}`,
+                    });
                 if(response.status === 200){
                     alert("Notification Sent");
                 }

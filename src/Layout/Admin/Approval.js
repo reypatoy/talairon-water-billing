@@ -1,8 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { db } from "../../firebase-config";
 import { collection,getDocs, query, where, } from "firebase/firestore";
 import { UserAuth } from "../../context/authContext";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect} from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
